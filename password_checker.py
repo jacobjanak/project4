@@ -14,22 +14,22 @@ def is_valid(pwd):
     check1 = len(pwd) >= 8
 
     # Iterate over characters c of pwd.
-    for ... in ...:
+    for c in pwd:
         # Perform digit check on c.
-        if ...:
-            ...
+        if c.isdigit():
+            check2 = True
         # Perform upper case check on c.
-        elif ...:
-            ...
+        elif c.isupper():
+            check3 = True
         # Perform lower case check on c.
-        elif ...:
-            ...
+        elif c.islower():
+            check4 = True
         # Perform alphanumeric check on c.
-        elif ...:
-            ...
+        elif not c.isalnum():
+            check5 = True
             
     # Return True if all checks are True and False otherwise.
-    ...
+    return check1 and check2 and check3 and check4 and check5
 
 
 # Test client [DO NOT EDIT].

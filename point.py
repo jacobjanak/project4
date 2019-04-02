@@ -12,21 +12,30 @@ class Point:
         Construct a new point given its x and y coordinates.
         """
 
-        ...
+        self.x = x
+        self.y = y
         
     def distanceTo(self, other):
         """
         Return the Euclidean distance between self and other.
         """
 
-        ...
+        # Initialize total to 0.0.
+        total = 0.0
+
+        # Add square of (coordinate - coordinate) to total.
+        total += (self.x - other.x) ** 2
+        total += (self.y - other.y) ** 2
+
+        # Return the square root of total.
+        return total ** 0.5
         
     def __str__(self):
         """
         Return a string representation of self.
         """
 
-        ...
+        return "(" + str(self.x) + ", " + str(self.y) + ")"
 
 
 # Test client [DO NOT EDIT].

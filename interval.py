@@ -13,28 +13,29 @@ class Interval:
         upper bounds.
         """
 
-        ...
+        self.lbound = lbound
+        self.rbound = rbound
         
     def lbound(self):
         """
         Return the lower bound of the interval.
         """
 
-        ...
+        return self.lbound
 
     def rbound(self):
         """
         Return the upper bound of the interval.
         """
 
-        ...
+        return self.rbound
 
     def contains(self, x):
         """
         Return True if self contains the point x and False otherwise.
         """
 
-        ...
+        return self.lbound <= x and x <= self.rbound
 
     def intersects(self, other):
         """
@@ -42,14 +43,14 @@ class Interval:
         False othewise.
         """
 
-        ...
+        return self.contains(other.lbound) or self.contains(other.rbound)
 
     def __str__(self):
         """
         Returns a string representation of self.
         """
 
-        ...
+        return "[" + str(self.lbound) + ", " + str(self.rbound) + "]"
 
 # Test client [DO NOT EDIT].
 def _main():
