@@ -13,21 +13,22 @@ class Rectangle:
         Construct a new rectangle given the x and y intervals.
         """
 
-        ...
+        self.xint = xint
+        self.yint = yint
 
     def area(self):
         """
         Return the area of self.
         """
 
-        ...
+        return (self.xint.rbound - self.xint.lbound) * (self.yint.rbound - self.yint.lbound)
         
     def perimeter(self):
         """
         Return the perimeter of self.
         """
 
-        ...
+        return (self.xint.rbound - self.xint.lbound) * 2 + (self.yint.rbound - self.yint.lbound) * 2
 
     def contains(self, x, y):
         """
@@ -35,7 +36,7 @@ class Rectangle:
         False otherwise.
         """
 
-        ...
+        return self.xint.lbound <= x <= self.xint.rbound and self.yint.lbound <= x <= self.yint.rbound
 
     def intersects(self, other):
         """
@@ -43,14 +44,19 @@ class Rectangle:
         False othewise.
         """
 
-        ...
+        return (
+            self.xint.lbound <= other.xint.rbound <= self.xint.rbound
+            or self.xint.lbound <= other.xint.lbound <= self.xint.rbound
+            or self.yint.lbound <= other.yint.rbound <= self.yint.rbound
+            or self.yint.lbound <= other.yint.lbound <= self.yint.rbound
+        )
         
     def __str__(self):
         """
         Return a string representation of self.
         """
 
-        ...
+        return "[%s, %s] x [%s, %s]" % (self.xint.lbound, self.xint.rbound, self.yint.lbound, self.yint.rbound)
 
 
 # Test client [DO NOT EDIT].
