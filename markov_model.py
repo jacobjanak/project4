@@ -36,7 +36,7 @@ class MarkovModel(object):
         # Add properties to MarkovModel instance
         self.st = st
         self.k = k
-        
+
     def order(self):
         """
         Return order of Markov model.
@@ -55,7 +55,7 @@ class MarkovModel(object):
             return 0
         else:
             return sum(v for v in self.st[kgram].values())
-        
+
     def char_freq(self, kgram, c):
         """
         Return number of times character c follows kgram.
@@ -67,7 +67,7 @@ class MarkovModel(object):
             return 0
         else:
             return self.st[kgram][c]
-        
+
     def rand(self, kgram):
         """
         Return a random character following kgram.
@@ -86,20 +86,20 @@ class MarkovModel(object):
                 rand_num -= self.char_freq(kgram, c)
                 if rand_num <= 0:
                     return c
-        
+
     def gen(self, kgram, T):
         """
         Generate and return a string of length T by simulating a trajectory
         through the correspondng Markov chain. The first k (<= T) characters
         of the generated string is the argument kgram.
         """
-        
+
         s = kgram
         for i in range(T - self.order()):
             s += self.rand(s[len(s) - self.order():])
 
         return s
-        
+
     def replace_unknown(self, corrupted):
         """
         Replace unknown characters (~) in corrupted with most probable
@@ -113,7 +113,7 @@ class MarkovModel(object):
                 # Used to keep track of the best possibility
                 best_probability = 0
                 best_char = None
-                
+
                 # Iterate over all possibilities
                 kgram = corrupted[i - self.order():i]
                 for c in self.st[kgram].keys():
@@ -126,7 +126,10 @@ class MarkovModel(object):
                     for j in range(self.order() + 1):
                         test_kgram = test[i + j - self.order():i + j]
                         if self.kgram_freq(test_kgram) > 0:
-                            probability *= self.char_freq(test_kgram, test[i + j]) / self.kgram_freq(test_kgram)
+                            probability *= (
+                                self.char_freq(test_kgram, test[i + j])
+                                / self.kgram_freq(test_kgram)
+                            )
                         else:
                             probability = 0
 

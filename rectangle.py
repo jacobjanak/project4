@@ -21,14 +21,16 @@ class Rectangle:
         Return the area of self.
         """
 
-        return (self.xint.rbound - self.xint.lbound) * (self.yint.rbound - self.yint.lbound)
-        
+        return ((self.xint.rbound - self.xint.lbound)
+                * (self.yint.rbound - self.yint.lbound))
+
     def perimeter(self):
         """
         Return the perimeter of self.
         """
 
-        return (self.xint.rbound - self.xint.lbound) * 2 + (self.yint.rbound - self.yint.lbound) * 2
+        return ((self.xint.rbound - self.xint.lbound) * 2
+                + (self.yint.rbound - self.yint.lbound) * 2)
 
     def contains(self, x, y):
         """
@@ -36,7 +38,8 @@ class Rectangle:
         False otherwise.
         """
 
-        return self.xint.lbound <= x <= self.xint.rbound and self.yint.lbound <= x <= self.yint.rbound
+        return (self.xint.lbound <= x <= self.xint.rbound
+                and self.yint.lbound <= x <= self.yint.rbound)
 
     def intersects(self, other):
         """
@@ -50,13 +53,15 @@ class Rectangle:
             or self.yint.lbound <= other.yint.rbound <= self.yint.rbound
             or self.yint.lbound <= other.yint.lbound <= self.yint.rbound
         )
-        
+
     def __str__(self):
         """
         Return a string representation of self.
         """
 
-        return "[%s, %s] x [%s, %s]" % (self.xint.lbound, self.xint.rbound, self.yint.lbound, self.yint.rbound)
+        return ("[%s, %s] x [%s, %s]"
+                % (self.xint.lbound, self.xint.rbound,
+                   self.yint.lbound, self.yint.rbound))
 
 
 # Test client [DO NOT EDIT].

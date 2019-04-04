@@ -14,21 +14,21 @@ class Rational:
         """
 
         ...
-        
+
     def __add__(self, other):
         """
         Returns the sum of self and other.
         """
 
         ...
-        
+
     def __sub__(self, other):
         """
         Returns the difference of self and other.
         """
 
         ...
-        
+
     def __mul__(self, other):
         """
         Returns the product of self and other.

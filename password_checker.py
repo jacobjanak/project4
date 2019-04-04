@@ -27,7 +27,7 @@ def is_valid(pwd):
         # Perform alphanumeric check on c.
         elif not c.isalnum():
             check5 = True
-            
+
     # Return True if all checks are True and False otherwise.
     return check1 and check2 and check3 and check4 and check5
 

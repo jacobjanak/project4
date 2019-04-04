@@ -14,7 +14,7 @@ class Point:
 
         self.x = x
         self.y = y
-        
+
     def distanceTo(self, other):
         """
         Return the Euclidean distance between self and other.
@@ -29,7 +29,7 @@ class Point:
 
         # Return the square root of total.
         return total ** 0.5
-        
+
     def __str__(self):
         """
         Return a string representation of self.

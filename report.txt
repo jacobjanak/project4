@@ -1,24 +1,51 @@
-1. Hours to complete the project: ... hours
+1. Hours to complete the project: 6 hours
 
 2. Provide a short description of how you approached each problem, issues you 
    encountered, and how you resolved those issues.
 
-   Problem 1 (Markov Model Data Type): ...
+   Problem 1 (Markov Model Data Type):
+   This problem was a little strange because I wasn't really supposed to
+   complete the entire file until I was done with problems 2 and 3. Still,
+   everything was very easy for me except for the contructor. That took a bit
+   of thinking but it wasn't outside of my comfort zone. I have a lot of
+   experience with object-oriented programming, so most of these concepts
+   were familiar to me. I'm not very used to doing it in Python, so it was
+   good for me to get some practice with classes in Python.
 
-   Problem 2 (Random Text Generator): ...
+   Problem 2 (Random Text Generator):
+   This was the easiest problem. I just focused on doing it efficiently. For
+   example, my first instinct was to generate an array with all the possible
+   letters add multiple instances of the same letter to increase its
+   probability. Then, I would use random.choice to pick a letter at random. I 
+   decided not to do that because I figured that creating an array would be 
+   inefficient. I think I came up with a pretty efficient approach in the end.
+   I decided to generate a random number between 0 and the number of occurences
+   of that kgram, and then I'd iterate over all the possible letters in the
+   kgram until the number of iterations reached the random number. I'm not
+   making much sense here but you can just look at the code. I basically took
+   my array idea and made it more efficient since I knew this problem would be
+   easy for me.
 
-   Problem 3 (Noisy Message Decoder): ...
+   Problem 3 (Noisy Message Decoder):
+   This was very tough for me. I had some trouble understanding what the PDF
+   was telling me to do, so I asked Professor Swami to clarify. He did a quick
+   demo on the whiteboard and, after that, I turned it into code. It was still
+   very difficult. I kept getting back a reasonable but incorrect result. I
+   had to really perfect my algorithm and I spent about 2 hours on this problem
+   alone. There's not one particular point at which I got stuck that I can
+   write about, it was just a slow process for me. There was a lot of string
+   slicing involved and I'm happy I got practice with that.
 
 3. Did you receive help from anyone? List their names, status (classmate, 
    CS110 grad, TA, other), and the nature of help received.
 
    Name               Status       Help Received
    ----               ------       -------------
-
+   Swami Iyer         Professor    Whiteboard demo of Problem 3
    ...                ...          ...
 
 4. List any other comments here. Feel free to provide any feedback on how
    much you learned from doing the assignment, and whether you enjoyed
    doing it.
 
-   ...
+   This was the hardest project so far! Project 2 was overrated.

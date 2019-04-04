@@ -17,5 +17,6 @@ def main():
     # Write result
     stdio.writeln(random_text)
 
+
 if __name__ == '__main__':
     main()

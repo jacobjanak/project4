@@ -15,7 +15,7 @@ class Interval:
 
         self.lbound = lbound
         self.rbound = rbound
-        
+
     def lbound(self):
         """
         Return the lower bound of the interval.
@@ -51,6 +51,7 @@ class Interval:
         """
 
         return "[" + str(self.lbound) + ", " + str(self.rbound) + "]"
+
 
 # Test client [DO NOT EDIT].
 def _main():
