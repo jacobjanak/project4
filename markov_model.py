@@ -49,7 +49,7 @@ class MarkovModel(object):
         Return number of occurrences of kgram in text.
         """
 
-        if len(kgram) != self.k:
+        if len(kgram) != self.order():
             raise ValueError("kgram length not equal to order")
         elif kgram not in self.st:
             return 0
@@ -61,7 +61,7 @@ class MarkovModel(object):
         Return number of times character c follows kgram.
         """
 
-        if len(kgram) != self.k:
+        if len(kgram) != self.order():
             raise ValueError("kgram length not equal to order")
         elif kgram not in self.st or c not in self.st[kgram]:
             return 0
@@ -73,16 +73,19 @@ class MarkovModel(object):
         Return a random character following kgram.
         """
 
-        if len(kgram) != self.k:
+        if len(kgram) != self.order():
             raise ValueError("kgram length not equal to order")
         elif kgram not in self.st:
             raise ValueError("kgram not in Markov model")
         else:
-            total = self.kgram_freq(kgram)
-            rand = stdrandom.uniformInt(0, total + 1)
-            for c in self.st[kgram]:
-                total -= self.st[kgram][c]
-                if total <= 0:
+
+            # 0 <= rand <= kgram freq
+            rand = stdrandom.uniformInt(0, self.kgram_freq(kgram) + 1)
+
+            # decrement rand by the char_freq until it hits 0
+            for c in self.st[kgram].values():
+                rand -= self.char_freq(kgram, c)
+                if rand <= 0:
                     return c
         
     def gen(self, kgram, T):
@@ -93,8 +96,8 @@ class MarkovModel(object):
         """
         
         s = kgram
-        for i in range(T - self.k):
-            s += self.rand(s[len(s) - self.k:])
+        for i in range(T - self.order()):
+            s += self.rand(s[len(s) - self.order():])
 
         return s
         
@@ -111,7 +114,7 @@ class MarkovModel(object):
         original = ''
         for i in range(len(corrupted)):
             if corrupted[i] == '~':
-                corrupted[i] = self.rand(corrupted[i - self.k:])
+                corrupted[i] = self.rand(corrupted[i - self.order():])
             else:
                 original += corrupted[i]
         return original
