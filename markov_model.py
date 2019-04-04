@@ -78,14 +78,13 @@ class MarkovModel(object):
         elif kgram not in self.st:
             raise ValueError("kgram not in Markov model")
         else:
-
             # 0 <= rand <= kgram freq
-            rand = stdrandom.uniformInt(0, self.kgram_freq(kgram) + 1)
+            rand_num = stdrandom.uniformInt(1, self.kgram_freq(kgram) + 1)
 
             # decrement rand by the char_freq until it hits 0
-            for c in self.st[kgram].values():
-                rand -= self.char_freq(kgram, c)
-                if rand <= 0:
+            for c in self.st[kgram].keys():
+                rand_num -= self.char_freq(kgram, c)
+                if rand_num <= 0:
                     return c
         
     def gen(self, kgram, T):

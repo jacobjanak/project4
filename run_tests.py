@@ -95,6 +95,7 @@ class Exercise4(unittest.TestCase):
 class Exercise5(unittest.TestCase):
 
     def test1(self):
+        self.maxDiff = None
         command = "python rectangle.py 1.01 1.34"
         sought = """Area([0.0, 1.0] x [0.0, 1.0]) = 1.000000
 Perimeter([0.0, 1.0] x [0.0, 1.0]) = 4.000000
