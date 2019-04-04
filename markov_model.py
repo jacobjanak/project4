@@ -26,7 +26,7 @@ class MarkovModel(object):
             if s not in st:
                 st[s] = {}
 
-            # Get the next char and add one to the frequency
+            # Get the next char and add one to its frequency
             c = text[i + k]
             if c in st[s]:
                 st[s][c] += 1
@@ -81,7 +81,7 @@ class MarkovModel(object):
             # 0 <= rand <= kgram freq
             rand_num = stdrandom.uniformInt(1, self.kgram_freq(kgram) + 1)
 
-            # decrement rand by the char_freq until it hits 0
+            # Decrement rand by the char_freq until it hits 0
             for c in self.st[kgram].keys():
                 rand_num -= self.char_freq(kgram, c)
                 if rand_num <= 0:
@@ -106,16 +106,41 @@ class MarkovModel(object):
         characters, and return that string.
         """
 
-        # Return the index of the maximum element in the given list a.
-        def argmax(a):
-            return a.index(max(a))
-
         original = ''
         for i in range(len(corrupted)):
             if corrupted[i] == '~':
-                corrupted[i] = self.rand(corrupted[i - self.order():])
+
+                # Used to keep track of the best possibility
+                best_probability = 0
+                best_char = None
+                
+                # Iterate over all possibilities
+                kgram = corrupted[i - self.order():i]
+                for c in self.st[kgram].keys():
+
+                    # Construct a possibility to test a character
+                    test = corrupted[:i] + c + corrupted[i + 1:]
+                    probability = 1.0
+
+                    # Perform various tests to see the probability
+                    for j in range(self.order() + 1):
+                        test_kgram = test[i + j - self.order():i + j]
+                        if self.kgram_freq(test_kgram) > 0:
+                            probability *= self.char_freq(test_kgram, test[i + j]) / self.kgram_freq(test_kgram)
+                        else:
+                            probability = 0
+
+                    # Compare the probability of this char to the best
+                    if best_probability <= probability:
+                        best_probability = probability
+                        best_char = c
+
+                # Add the best match to the string
+                original += best_char
+
             else:
                 original += corrupted[i]
+
         return original
 
 
